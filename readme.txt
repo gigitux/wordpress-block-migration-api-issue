@@ -1,55 +1,25 @@
-=== Todo List ===
-Contributors:      The WordPress Contributors
-Tags:              block
-Tested up to:      6.7
-Stable tag:        0.1.0
-License:           GPL-2.0-or-later
-License URI:       https://www.gnu.org/licenses/gpl-2.0.html
+# Deprecation API Issue Demo
 
-Example block scaffolded with Create Block tool.
+This repository demonstrates a potential issue with the block deprecation API when migrating a block from static to dynamic. In some cases, the migration doesn't apply correctly.
 
-== Description ==
+---
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+## ✅ Working Case
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+1. Switch to `working/branch-1`. The `save` function returns a `<p>`.
+2. Create a new post.
+3. Add the **Todo Block**.
+4. Save the post.
+5. Switch to `working/branch-2`, where the `save` function returns `null`.
+   ➤ The deprecation API works correctly, and the block remains valid.
 
-== Installation ==
+---
 
-This section describes how to install the plugin and get it working.
+## ❌ Not Working Case
 
-e.g.
-
-1. Upload the plugin files to the `/wp-content/plugins/todo-list` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
-
-== Frequently Asked Questions ==
-
-= A question that someone might have =
-
-An answer to that question.
-
-= What about foo bar? =
-
-Answer to foo bar dilemma.
-
-== Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
-
-== Changelog ==
-
-= 0.1.0 =
-* Release
-
-== Arbitrary section ==
-
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+1. Switch to `not-working/branch-1`. The `save` function returns a `<div>`.
+2. Create a new post.
+3. Add the **Todo Block**.
+4. Save the post.
+5. Switch to `not-working/branch-2`, where the `save` function also returns a `<div>`.
+   ➤ Despite the deprecation API, the block is flagged as invalid.
