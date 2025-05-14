@@ -38,6 +38,7 @@ registerBlockType(metadata.name, {
 	save: () => null,
 	deprecated: [
 		{
+			// apiVersion: 3,
 			attributes: {},
 			migrate: () => {},
 			save,
