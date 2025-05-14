@@ -28,3 +28,10 @@ node_modules/
 
 # dotenv environment variables file
 .env
+
+
+# Ignore all files in the build directory
+build/*
+
+# Ignore all files in the build directory
+build/*
