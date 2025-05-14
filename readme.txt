@@ -1,25 +1,17 @@
 # Deprecation API Issue Demo
 
-This repository demonstrates a potential issue with the block deprecation API when migrating a block from static to dynamic. In some cases, the migration doesn't apply correctly.
+This repository demonstrates a problem related to the Deprecation API.
+More details are available in [this issue](#).
 
----
 
-## ✅ Working Case
-
-1. Switch to `working/branch-1`. The `save` function returns a `<p>`.
-2. Create a new post.
-3. Add the **Todo Block**.
-4. Save the post.
-5. Switch to `working/branch-2`, where the `save` function returns `null`.
-   ➤ The deprecation API works correctly, and the block remains valid.
-
----
-
-## ❌ Not Working Case
-
-1. Switch to `not-working/branch-1`. The `save` function returns a `<div>`.
-2. Create a new post.
-3. Add the **Todo Block**.
-4. Save the post.
-5. Switch to `not-working/branch-2`, where the `save` function also returns a `<div>`.
-   ➤ Despite the deprecation API, the block is flagged as invalid.
+1. Run `npm start`.
+2. Checkout the `main` branch.
+3. Create a new post.
+4. Add the **Todo Block**.
+5. Save the post.
+6. Switch to the `migration` branch.
+7. Refresh the page.
+8. Observe the **invalid block** error.
+9. Open the `index.js` file and uncomment the `apiVersion: 3` line.
+10. Refresh the page.
+11. The block now works correctly.
